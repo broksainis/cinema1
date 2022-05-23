@@ -1,12 +1,14 @@
 html
   head
     title= title
-  body
-    h1= title
-    ul
-        each movie in movies
-            li
-                b= movie.OriginalTitle
-            ul
-                each event in movie.Events
-                    li= `${new Date(event.dttmShowStart).toLocaleDateString("en-US")} - ${event.Theatre}`
+    link(rel='stylesheet', href='./css/bootstrap.css')
+  body  
+    .container
+        .jumbotron
+          h1.text-center=title
+        .row
+          each movie in movies
+              .col-md-4
+                .card.mb-4
+                  img.card-img-top(src=movie.Images.EventMediumImagePortrait, alt=movie.OriginalTitle)
+    script(src="./js/bootstrap.bundle.js") 
