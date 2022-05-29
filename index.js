@@ -11,6 +11,7 @@ const APOLLO_KINO_SCHEDULE_URL = 'https://www.apollokino.lv/xml/Schedule/';
 
 const title = 'Kino Monolith';
 
+app.locals.dateFns = require('date-fns');
 app.use("/css", express.static(path.join(__dirname, "node_modules/bootstrap/dist/css")));
 app.use("/js", express.static(path.join(__dirname, "node_modules/bootstrap/dist/js")));
 

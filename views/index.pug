@@ -9,6 +9,10 @@ html
         .row
           each movie in movies
               .col-md-4
-                .card.mb-4
+                .card.mb-4.text-center
                   img.card-img-top(src=movie.Images.EventMediumImagePortrait, alt=movie.OriginalTitle)
+                  if movie.Events && movie.Events.length > 0
+                    .card-footer.text-muted=dateFns.format(new Date(`${movie.Events[0].dttmShowStart}`), 'dd.MM.yyyy HH:mm')
+                  else 
+                    .card-footer.text-muted='Nav seansu'
     script(src="./js/bootstrap.bundle.js") 
