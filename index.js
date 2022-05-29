@@ -19,8 +19,19 @@ app.set('view engine', 'pug');
 app.get("/", async (req, res) => {
     try {
         const movies = await utils.mergeMoviesWithSchedule(APOLLO_KINO_EVENTS_URL, APOLLO_KINO_SCHEDULE_URL);
-        // console.log(movies)
         res.render('index', { title, movies });
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+app.get("/:ID", async (req, res) => {
+    try {
+        const movies = await utils.mergeMoviesWithSchedule(APOLLO_KINO_EVENTS_URL, APOLLO_KINO_SCHEDULE_URL);
+        const movie = movies.find((movieData) => {
+            return parseInt(movieData.ID) === parseInt(req.params.ID);
+        });
+        res.render('item', { title, movie });
     } catch (error) {
         console.error(error);
     }
